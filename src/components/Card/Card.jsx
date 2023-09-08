@@ -7,11 +7,21 @@ function Card({
   setSelected,
   setUnselected,
   flip,
+  setLose,
+  score,
+  setScore,
 }) {
   function handleClick() {
-    setSelected([...selected, character]);
-    setUnselected(unselected.filter((char) => char.name !== character.name));
+    //check selected character
+    if (selected.find((char) => char.name === character.name)) {
+      setLose(true);
+    } else {
+      setSelected([...selected, character]);
+      setUnselected(unselected.filter((char) => char.name !== character.name));
+      setScore(score + 1);
+    }
   }
+
   return (
     <div className={flip ? styles.flip : styles.card} onClick={handleClick}>
       <div className={styles.flipCardInner}>
@@ -32,6 +42,9 @@ Card.propTypes = {
   setSelected: PropTypes.func,
   setUnselected: PropTypes.func,
   flip: PropTypes.bool,
+  setLose: PropTypes.func,
+  score: PropTypes.number,
+  setScore: PropTypes.func,
 };
 
 export default Card;

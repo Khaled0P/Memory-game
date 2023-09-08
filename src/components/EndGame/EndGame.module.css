@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
+
+
+.endScreen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultContainer {
+    font-family: 'Potta One', cursive;
+    width: 800px;
+    aspect-ratio: 1.82/1;
+    padding: 15px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.lose {
+    composes: resultContainer;
+    box-shadow: 0 5px 20px #611111, 0 -5px 20px #611111;
+}
+
+.win {
+    composes: resultContainer;
+    box-shadow: 0 5px 20px #38d14c, 0 -5px 20px #57bd6d;
+}
+
+h1 {
+    font-size: 40px;
+    padding: 10px 30px;
+    border-radius: 15px;
+}
+
+.lose h1 {
+    background-color: #af0f0f;
+}
+
+.win h1 {
+    background-color: #19ad2d;
+}
+
+.lose button,
+.win button {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    transition: transform .3s ease-in-out;
+}
+
+.lose button:hover,
+.win button:hover {
+    border: none;
+    transform: scale(110%);
+}
+
+button:focus,
+button:focus-visible {
+    outline: none;
+}
+
+.lose button:active,
+.win button:active {
+    transform: scale(100%);
+}
