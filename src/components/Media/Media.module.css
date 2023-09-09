@@ -1,0 +1,48 @@
+.backgroundVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50%;
+    z-index: -2;
+}
+
+.backgroundIcon {
+    position: absolute;
+    z-index: 10;
+    bottom: 10px;
+    left: 30px;
+}
+
+.backgroundIcon img {
+    width: 80%;
+}
+
+.backgroundIcon:active {
+    transform: scale(90%);
+}
+
+.backgroundIconMuted {
+    composes: backgroundIcon;
+}
+
+.backgroundIconMuted::after {
+    content: '';
+    width: 42%;
+    height: 2px;
+    background-color: rgb(21, 21, 66);
+    position: absolute;
+    top: 42%;
+    left: 31%;
+    z-index: 20;
+    transform: rotate(45deg);
+}
+
+.credit {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}

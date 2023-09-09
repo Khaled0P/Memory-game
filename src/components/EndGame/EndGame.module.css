@@ -65,13 +65,7 @@ h1 {
 
 .lose button:hover,
 .win button:hover {
-    border: none;
     transform: scale(110%);
-}
-
-button:focus,
-button:focus-visible {
-    outline: none;
 }
 
 .lose button:active,
