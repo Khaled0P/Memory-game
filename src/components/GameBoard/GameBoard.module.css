@@ -6,3 +6,18 @@
     align-items: center;
     gap: 30px;
 }
+
+.scoreBoard {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb();
+    background-color: rgba(23, 35, 62, .6);
+    padding: 10px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px #424242, 0 -5px 15px #424242;
+}
+
+.scoreBoard p {
+    margin: 10px;
+}

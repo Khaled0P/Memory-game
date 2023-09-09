@@ -63,8 +63,13 @@ export default function GameBoard({
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty.cardNumber, selectedCharacters, unselectedCharacters, score]);
+
   return (
     <div className={styles.board}>
+      <div className={styles.scoreBoard}>
+        <p>your score: {score}</p>
+        <p>Target: {difficulty.target}</p>
+      </div>
       {cards.map((card) => (
         <Card
           key={card.id}
