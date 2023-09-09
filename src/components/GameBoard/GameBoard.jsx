@@ -10,7 +10,7 @@ function getMultipleRandom(arr, num) {
 }
 
 export default function GameBoard({
-  number,
+  difficulty,
   setWin,
   score,
   setScore,
@@ -25,13 +25,13 @@ export default function GameBoard({
 
   //load card templates based on difficulty
   const cards = [];
-  for (let i = 0; i < number; i++) {
+  for (let i = 0; i < difficulty.cardNumber; i++) {
     cards.push({ id: i });
   }
 
   useEffect(() => {
     //check for win
-    if (score === 5) {
+    if (score === difficulty.target) {
       setWin(true);
       return;
     }
@@ -40,16 +40,19 @@ export default function GameBoard({
       //randomize the ratio between selected and unselected characters
       //or get all unselected if no selected
       let random = selectedCharacters.length
-        ? Math.ceil(Math.random() * number)
-        : number;
+        ? Math.ceil(Math.random() * difficulty.cardNumber)
+        : difficulty.cardNumber;
       //if number requested greater than array length default to array length
       if (random > unselectedCharacters.length) {
         random = unselectedCharacters.length;
-      } else if (number - random > selectedCharacters.length) {
-        random = number - selectedCharacters.length;
+      } else if (difficulty.cardNumber - random > selectedCharacters.length) {
+        random = difficulty.cardNumber - selectedCharacters.length;
       }
       const unselected = getMultipleRandom(unselectedCharacters, random);
-      const selected = getMultipleRandom(selectedCharacters, number - random);
+      const selected = getMultipleRandom(
+        selectedCharacters,
+        difficulty.cardNumber - random
+      );
 
       // return a combination of both selected and not selected characters in random order
       return [...unselected, ...selected].sort(() => 0.5 - Math.random());
@@ -59,7 +62,7 @@ export default function GameBoard({
       setFlip(false);
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [number, selectedCharacters, unselectedCharacters, score]);
+  }, [difficulty.cardNumber, selectedCharacters, unselectedCharacters, score]);
   return (
     <div className={styles.board}>
       {cards.map((card) => (
@@ -84,7 +87,7 @@ export default function GameBoard({
 }
 
 GameBoard.propTypes = {
-  number: PropTypes.number,
+  difficulty: PropTypes.object,
   setWin: PropTypes.func,
   setLose: PropTypes.func,
   score: PropTypes.number,

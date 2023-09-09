@@ -1,0 +1,53 @@
+.mainMenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.animate {
+    composes: mainMenu;
+}
+
+.logo {
+    width: 60%;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.difficulty {
+    display: flex;
+    gap: 3rem;
+}
+
+.difficulty button {
+    font-family: 'Potta One', cursive;
+    padding: 0;
+    font-size: 2em;
+    text-shadow: 6px 6px #4d84c8, 5px 5px #4d84c8,
+        4px 4px #4d84c8, 3px 3px #4d84c8, 2px 2px #4d84c8,
+        1px 1px #4d84c8;
+    width: 100%;
+    transition: transform .3s ease-in-out;
+
+}
+
+.difficulty button:hover {
+    transform: scale(110%);
+}
+
+.mainMenu .logo,
+.mainMenu .difficulty {
+    transform: scale(0);
+    transition: transform .3s ease-in-out;
+}
+
+.animate .logo,
+.animate .difficulty {
+    transform: scale(100%);
+}
