@@ -2,25 +2,10 @@ import styles from './EndGame.module.css';
 import PropTypes from 'prop-types';
 import winImg from '../../assets/images/win.gif';
 import loseImg from '../../assets/images/lose.jpg';
-import { characters } from '../../characters';
 
-export default function EndGame({
-  win,
-  lose,
-  setWin,
-  setLose,
-  setSelectedCharacters,
-  setUnselectedCharacters,
-  setScore,
-}) {
+export default function EndGame({ win, lose, handleReset }) {
   const backgroundImage = win ? winImg : loseImg;
-  function handleReset() {
-    setWin(false);
-    setLose(false);
-    setSelectedCharacters([]);
-    setUnselectedCharacters(characters);
-    setScore(0);
-  }
+
   return (
     <div className={styles.endScreen}>
       <div
@@ -42,9 +27,5 @@ export default function EndGame({
 EndGame.propTypes = {
   win: PropTypes.bool,
   lose: PropTypes.bool,
-  setWin: PropTypes.func,
-  setLose: PropTypes.func,
-  setSelectedCharacters: PropTypes.func,
-  setUnselectedCharacters: PropTypes.func,
-  setScore: PropTypes.func,
+  handleReset: PropTypes.func,
 };
