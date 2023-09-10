@@ -31,6 +31,7 @@
 /* Do a horizontal flip when you move the mouse over the flip box container */
 .flip {
     composes: card;
+    pointer-events: none;
 }
 
 .flip .flipCardInner {
