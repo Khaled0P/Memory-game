@@ -9,7 +9,7 @@ export default function MainMenu({ setStartGame, setDifficulty }) {
   useEffect(() => {
     setTimeout(() => {
       setAnimate(true);
-    }, 10);
+    }, 100);
   }, []);
 
   const handledifficulty = (cardNumber, target) => {

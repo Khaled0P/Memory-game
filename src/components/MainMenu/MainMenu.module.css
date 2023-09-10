@@ -26,7 +26,6 @@
 }
 
 .difficulty button {
-    font-family: 'Potta One', cursive;
     padding: 0;
     font-size: 2em;
     text-shadow: 6px 6px #4d84c8, 5px 5px #4d84c8,
@@ -44,7 +43,7 @@
 .mainMenu .logo,
 .mainMenu .difficulty {
     transform: scale(0);
-    transition: transform .3s ease-in-out;
+    transition: transform .6s ease-in-out;
 }
 
 .animate .logo,

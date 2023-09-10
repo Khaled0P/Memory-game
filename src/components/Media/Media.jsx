@@ -36,6 +36,7 @@ export default function Media() {
       </button>
       <a
         className={styles.credit}
+        target="blank"
         href="https://www.flaticon.com/free-icons/itunes"
         title="itunes icons"
       >
