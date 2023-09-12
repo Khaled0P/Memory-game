@@ -35,7 +35,6 @@ export default function GameBoard({
       setWin(true);
       return;
     }
-    setFlip(true);
     const displayedCharacters = function () {
       //randomize the ratio between selected and unselected characters
       //or get all unselected if no selected
@@ -57,10 +56,16 @@ export default function GameBoard({
       // return a combination of both selected and not selected characters in random order
       return [...unselected, ...selected].sort(() => 0.5 - Math.random());
     };
+
+    //start flip animation
+    setFlip(true);
     setTimeout(() => {
       setCurrentCharacters(displayedCharacters());
-      setFlip(false);
-    }, 1000);
+      setTimeout(() => {
+        setFlip(false);
+      }, 200);
+    }, 800);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty.cardNumber, selectedCharacters, unselectedCharacters, score]);
 
