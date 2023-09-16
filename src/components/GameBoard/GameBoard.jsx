@@ -13,12 +13,8 @@ export default function GameBoard({
   difficulty,
   setWin,
   score,
-  setScore,
-  setLose,
-  selectedCharacters,
-  unselectedCharacters,
-  setSelectedCharacters,
-  setUnselectedCharacters,
+  selected,
+  unselected,
 }) {
   const [currentCharacters, setCurrentCharacters] = useState();
   const [flip, setFlip] = useState(true);
@@ -38,23 +34,25 @@ export default function GameBoard({
     const displayedCharacters = function () {
       //randomize the ratio between selected and unselected characters
       //or get all unselected if no selected
-      let random = selectedCharacters.length
+      let random = selected.length
         ? Math.ceil(Math.random() * difficulty.cardNumber)
         : difficulty.cardNumber;
       //if number requested greater than array length default to array length
-      if (random > unselectedCharacters.length) {
-        random = unselectedCharacters.length;
-      } else if (difficulty.cardNumber - random > selectedCharacters.length) {
-        random = difficulty.cardNumber - selectedCharacters.length;
+      if (random > unselected.length) {
+        random = unselected.length;
+      } else if (difficulty.cardNumber - random > selected.length) {
+        random = difficulty.cardNumber - selected.length;
       }
-      const unselected = getMultipleRandom(unselectedCharacters, random);
-      const selected = getMultipleRandom(
-        selectedCharacters,
+      const displayedUnselected = getMultipleRandom(unselected, random);
+      const displayedSelected = getMultipleRandom(
+        selected,
         difficulty.cardNumber - random
       );
 
       // return a combination of both selected and not selected characters in random order
-      return [...unselected, ...selected].sort(() => 0.5 - Math.random());
+      return [...displayedUnselected, ...displayedSelected].sort(
+        () => 0.5 - Math.random()
+      );
     };
 
     //start flip animation
@@ -67,7 +65,7 @@ export default function GameBoard({
     }, 800);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [difficulty.cardNumber, selectedCharacters, unselectedCharacters, score]);
+  }, [difficulty.cardNumber, selected, unselected, score]);
 
   return (
     <div className={styles.board}>
@@ -82,14 +80,10 @@ export default function GameBoard({
             //load character information once effect executes
             currentCharacters ? currentCharacters[cards.indexOf(card)] : {}
           }
-          selected={selectedCharacters}
-          unselected={unselectedCharacters}
-          setSelected={setSelectedCharacters}
-          setUnselected={setUnselectedCharacters}
+          selected={selected}
+          unselected={unselected}
           flip={flip}
-          setLose={setLose}
           score={score}
-          setScore={setScore}
         />
       ))}
     </div>
@@ -99,11 +93,7 @@ export default function GameBoard({
 GameBoard.propTypes = {
   difficulty: PropTypes.object,
   setWin: PropTypes.func,
-  setLose: PropTypes.func,
   score: PropTypes.number,
-  setScore: PropTypes.func,
-  selectedCharacters: PropTypes.array,
-  unselectedCharacters: PropTypes.array,
-  setSelectedCharacters: PropTypes.func,
-  setUnselectedCharacters: PropTypes.func,
+  selected: PropTypes.array,
+  unselected: PropTypes.array,
 };

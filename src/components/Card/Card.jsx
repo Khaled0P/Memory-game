@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
 import styles from './Card.module.css';
-function Card({
-  character,
-  selected,
-  unselected,
-  setSelected,
-  setUnselected,
-  flip,
-  setLose,
-  score,
-  setScore,
-}) {
+import { useContext } from 'react';
+import { CharactersContext, StatsContext } from '../context';
+function Card({ character, selected, unselected, flip, score }) {
+  const { setSelected, setUnselected } = useContext(CharactersContext);
+  const { setLose, setScore } = useContext(StatsContext);
+
   function handleClick() {
     //check selected character
     if (selected.find((char) => char.name === character.name)) {
@@ -39,8 +34,6 @@ Card.propTypes = {
   character: PropTypes.object,
   selected: PropTypes.array,
   unselected: PropTypes.array,
-  setSelected: PropTypes.func,
-  setUnselected: PropTypes.func,
   flip: PropTypes.bool,
   setLose: PropTypes.func,
   score: PropTypes.number,
